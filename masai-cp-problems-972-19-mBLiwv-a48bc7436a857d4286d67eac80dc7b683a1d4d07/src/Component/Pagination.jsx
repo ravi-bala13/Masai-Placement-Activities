@@ -1,20 +1,21 @@
 function Pagination(props) {
 
   const paginationValues = props.paginationValues;
+  let maxPage = paginationValues.totalPages/paginationValues.limit
   const prev = (
     <button
       data-testid="prev-page"
-      // disabled={true}
+      disabled={paginationValues.page > 1 ? false : true}
       onClick = {() => props.onPageChange(-1)}
     >
       Prev
     </button>
   );
-  const currentPage = <button data-testid="current-page">0</button>;
+  const currentPage = <button data-testid="current-page">{paginationValues.page}</button>;
   const next = (
     <button
       data-testid="next-page"
-      // disabled={true}
+      disabled={paginationValues.page < maxPage ? false : true}
       onClick = {() => props.onPageChange(1)}
     >
       Next

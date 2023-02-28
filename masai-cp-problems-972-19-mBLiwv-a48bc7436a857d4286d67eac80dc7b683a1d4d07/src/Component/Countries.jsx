@@ -12,17 +12,15 @@ function Countries() {
     limit: 10,
     page: 1
   })
-  console.log("paginationValues", paginationValues)
   useEffect(() => {
     getData()
-  }, [])
+  }, [paginationValues.page])
   
 
   const getData = () => {
     fetch(`https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-countries?page=${paginationValues.page}&limit=${paginationValues.limit}&sort=population&order=asc`)
     .then(res => res.json())
     .then(result => {
-      console.log(result)
       setData(result.data)
       setLoading(false)
       setPaginationValues({...paginationValues, totalPages: result.totalPages})
@@ -31,12 +29,7 @@ function Countries() {
 
   const onPageChange = (val) => {
     let temp = paginationValues.page;
-    let maxPage = paginationValues.totalPages/paginationValues.limit
-    // if(temp > 0 && val > 0){
       temp += val;
-    // }else if(temp < maxPage && val < 0){
-    //   temp += val
-    // }
     setPaginationValues({...paginationValues, page: temp})
   }
 
