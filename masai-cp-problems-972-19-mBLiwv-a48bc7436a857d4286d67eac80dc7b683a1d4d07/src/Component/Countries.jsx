@@ -37,7 +37,7 @@ function Countries() {
     // }else if(temp < maxPage && val < 0){
     //   temp += val
     // }
-    // setPaginationValues({...paginationValues, page: temp})
+    setPaginationValues({...paginationValues, page: temp})
   }
 
   return loading ? 
