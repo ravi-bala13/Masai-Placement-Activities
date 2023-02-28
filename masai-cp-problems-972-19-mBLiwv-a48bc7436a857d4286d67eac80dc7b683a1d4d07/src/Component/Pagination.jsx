@@ -1,8 +1,11 @@
-function Pagination() {
+function Pagination(props) {
+
+  const paginationValues = props.paginationValues;
   const prev = (
     <button
       data-testid="prev-page"
-      disabled={true}
+      // disabled={true}
+      onClick = {() => props.onPageChange(-1)}
     >
       Prev
     </button>
@@ -11,7 +14,8 @@ function Pagination() {
   const next = (
     <button
       data-testid="next-page"
-      disabled={true}
+      // disabled={true}
+      onClick = {() => props.onPageChange(1)}
     >
       Next
     </button>
@@ -24,7 +28,7 @@ function Pagination() {
       {next}
       </div>
       <div>
-        Total Pages: <b data-testid="total-pages">10</b>
+        Total Pages: <b data-testid="total-pages">{paginationValues.totalPages}</b>
       </div>
     </div>
   );
